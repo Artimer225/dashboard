@@ -6,7 +6,22 @@ body {
     height: 100%;
 }
 
+@font-face {
+    font-family: 'Creato Display';
+    src: url('fonts/CreatoDisplay-Regular.woff2') format('woff2'),
+        url('fonts/CreatoDisplay-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --color-cards: #f8f9fa;
+    --white-color: invert(100%) sepia(86%) saturate(500%) hue-rotate(179deg) brightness(103%) contrast(95%);
+}
+
 p {
+    font-family: 'Creato Display', sans-serif;
     margin: 0;
 }
 
@@ -22,7 +37,7 @@ p {
     grid-template-rows: 100px 1fr 3fr;
     grid-template-columns: 20px 1fr;
     grid-row: 1 / -1;
-    background-color: #bbd0ff;
+    background-color: #212529;
 }
 
 .nav .logo {
@@ -37,18 +52,26 @@ p {
 }
 
 .nav .logo p {
-    font-size: 30px;
+    font-size: 28px;
 }
 
 .nav .menu {
-    grid-column: 2/3;
+    grid-column: 1 / 3;
 }
 
 .nav .menu .item {
     display: grid;
     grid-template-columns: 1fr 4fr;
     align-items: center;
-    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.nav .menu .item:hover {
+    background-color: rgba(211, 211, 211, 0.3);
+}
+
+.nav .menu .item:active {
+    background-color: #DBAFA0;
 }
 
 .nav .menu .item img {
@@ -59,12 +82,20 @@ p {
     font-size: 24px;
 }
 
+.nav img {
+    filter: var(--white-color);
+}
+
+.nav p {
+    color: var(--color-cards);
+}
+
 .header {
     display: grid;
     grid-column: 2 / -1;
     grid-row: 1 / 2;
     grid-template-rows: repeat(2, 1fr);
-    background-color: #b8c0ff;
+    background-color: #343a40;
 }
 
 .header .upper {
@@ -87,11 +118,12 @@ p {
 .header .upper .search img {
     height: 30px;
     grid-column: 1 / 2;
+    filter: var(--white-color);
 }
 
 .header .upper .search input{
     grid-column: 2 / 3;
-    width: 600px;
+    width: 800px;
     height: 34px;
     border-radius: 18px;
     background-color: ghostwhite;
@@ -112,6 +144,21 @@ p {
     align-items: center;
     justify-items: end;
     font-size: 24px;
+    color: var(--color-cards);
+}
+
+.header .upper .user button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+.header .upper .user button:hover {
+    filter: var(--white-color);
+}
+
+.header .upper .user button:active {
+    filter: invert(96%) sepia(7%) saturate(475%) hue-rotate(179deg) brightness(86%) contrast(98%);
 }
 
 .header .upper .user img:first-child {
@@ -142,6 +189,7 @@ p {
 .header .lower .greeting p {
     grid-column: 2 / 3;
     font-size: 35px;
+    color: var(--color-cards);
 }
 
 .header .lower .greeting img {
@@ -157,14 +205,23 @@ p {
 }
 
 .header .lower .buttons button {
-    background-color: salmon;
+    background-color: var(--color-cards);
     height: 46px;
     width: 120px;
     border-radius: 18px;
     border-style: solid;
     border-color: transparent;
-    color: mintcream;
+    color: black;
     font-size: 15px;
+    font-weight: bold;
+}
+
+.header .lower .buttons button:hover {
+    background-color: #ede0d4;
+}
+
+.header .lower .buttons button:active {
+    background-color: #ddb892;
 }
 
 .section p {
@@ -177,17 +234,16 @@ p {
     display: grid;
     grid-column: 2 / -1;
     grid-row: 2 / -1;
-    grid-template-columns: 50px 3fr 2fr 1fr 50px;
+    grid-template-columns: 50px 4fr 50px 1fr 50px;
     grid-template-rows: 50px 1fr 150px;
-    background-color: #e7c6ff;
+    background-color: #495057;
 }
 
 .section .projects {
     display: grid;
-    /*grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));*/
     grid-column: 2 / 3;
     grid-row: 2 / 3;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 50px 128px;
 }
@@ -197,9 +253,9 @@ p {
     grid-template-rows: repeat(2, 1fr) 4fr 50px 1fr;
     grid-template-columns: 10px 0.5fr 6fr 0.5fr;
     height: 230px;
-    border-left: 10px solid red;
+    border-left: 10px solid #DBAFA0;
     border-radius: 10px;
-    background-color: ghostwhite;
+    background-color: var(--color-cards);
 
 }
 
@@ -234,6 +290,19 @@ p {
     height: 30px;
 }
 
+.section .card .edit-buttons button {
+    background: transparent;
+    border: none;
+}
+
+.section .card .edit-buttons button:hover {
+    filter: invert(93%) sepia(8%) saturate(895%) hue-rotate(320deg) brightness(104%) contrast(86%);
+}
+
+.section .card .edit-buttons button:active {
+    filter: invert(77%) sepia(23%) saturate(444%) hue-rotate(350deg) brightness(94%) contrast(93%);
+}
+
 .section .sidebar {
     display: grid;
     grid-column: 4 / 5;
@@ -253,10 +322,9 @@ p {
 }
 
 .section .sidebar .news {
-    /*i better make these variables global, as they repeat three hecking times*/
     display: grid;
     grid-template-rows: repeat(3, 1fr);
-    background-color: mistyrose;
+    background-color: var(--color-cards);
     border-radius: 10px;
 }
 
@@ -288,7 +356,7 @@ p {
     display: grid;
     grid-template-rows: repeat(4, 1fr);
     grid-template-columns: 10px 0.5fr 6fr 0.5fr;
-    background-color: beige;
+    background-color: var(--color-cards);
     border-radius: 10px;
 }
 
@@ -309,6 +377,7 @@ p {
     font-size: 24px;
     font-weight: bold;
     align-self: center;
+    color: var(--color-cards);
 }
 
 .section .title {
